@@ -1,0 +1,42 @@
+
+运行原理：
+原理：jenkins上的执行器是通过rancher管理，运行在多个虚拟机上, 所以可以通过登录rancher进入执行器操作
+参考以下
+https://blog.csdn.net/weixin_47055136/article/details/132067384?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-132067384-blog-105292756.235%5Ev40%5Epc_relevant_3m_sort_dl_base2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-132067384-blog-105292756.235%5Ev40%5Epc_relevant_3m_sort_dl_base2&utm_relevant_index=4
+
+大概是这个
+```
+Rancher 是一个开源的容器管理平台，它可以用来部署和管理容器化的应用程序。Jenkins 是一个开源的自动化服务器，用于自动化软件开发的构建、测试和部署。
+
+如果你想要使用 Rancher 来管理 Jenkins 上的执行器（也就是 Jenkins 的 agent 或者 slave），你可以通过在 Rancher 上部署 Jenkins 的执行器作为容器来实现。以下是一个基本的步骤指南：
+
+准备 Jenkins 主服务器：
+确保你的 Jenkins 主服务器已经运行，并且可以从 Rancher 管理的集群中访问。
+
+创建 Jenkins 执行器的 Docker 镜像：
+你可以使用 Jenkins 官方提供的 jnlp-slave 镜像，或者根据需要自定义一个 Dockerfile 来创建你自己的 Jenkins 执行器镜像。
+
+在 Rancher 上部署 Jenkins 执行器：
+在 Rancher 的界面中，你可以创建一个新的工作负载来部署 Jenkins 执行器容器。你需要确保执行器容器可以与 Jenkins 主服务器通信，并且配置适当的环境变量，如 JENKINS_URL（Jenkins 主服务器的 URL）、JENKINS_SECRET（执行器的连接密钥）和 JENKINS_AGENT_NAME（执行器的名称）。
+
+配置 Jenkins 主服务器：
+在 Jenkins 主服务器上，你需要配置一个新的节点，并选择 "Launch agent via Java Web Start"（通过 Java Web Start 启动代理）。在节点配置中，你需要输入在 Rancher 部署的执行器容器的相关信息。
+
+启动执行器并连接到 Jenkins：
+当 Rancher 部署的 Jenkins 执行器容器启动时，它会尝试连接到 Jenkins 主服务器。如果配置正确，它将会作为一个节点出现在 Jenkins 的节点列表中，并可以接受任务并执行构建。
+```
+
+https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-12-109753953-blog-132067384.235^v40^pc_relevant_3m_sort_dl_base2&spm=1001.2101.3001.4242.7&utm_relevant_index=15
+
+1、分配执行机
+  执行机本质是rancher管理的虚拟机
+日志： running on xxx in {jenkins服务器代码目录}，注意代码目录固定
+2、环境准备
+  2.1 清理之前的allure报告
+  2.2 清理之前的录像和截图
+  2.3 清理之前的代码（每次均需要重新拉取最新代码）
+  2.4 是否延迟构建
+
+  
+
+
