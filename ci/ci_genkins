@@ -36,6 +36,21 @@ https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc
   2.2 清理之前的录像和截图
   2.3 清理之前的代码（每次均需要重新拉取最新代码）
   2.4 是否延迟构建
+3、代码准备
+  3.1 jenkins配置和github的凭证，使用该凭证拉取用例代码，
+  3.2 删除一些linux不能用的依赖  sed -i s#pywin32##g requirements.txt
+  3.3 依赖相关使用pip拉取或卸载 
+      卸载已存在的，安装最新的   
+    sh "python3.10 -m pip uninstall -y pp-scp sd-scp docker docker-py"
+    sh "python3.10 -m pip install pymysql"
+    sh "python3.10 -m pip install -r requirements.txt"
+  3.4 若存在多个代码分支，如e-cloud 和epoch
+    1）可以选择基于3.1安装依赖
+    2）重新拉取新项目，再次安装依赖
+4、运行pytest
+  4.1 删除缓存文件 rm -rf /home/jenkins/workspace/NG_PyTest_Py3/pytest_cache.tar.gz
+  4.2 
+
 
   
 
