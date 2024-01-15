@@ -49,7 +49,12 @@ https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc
     2）重新拉取新项目，再次安装依赖
 4、运行pytest
   4.1 删除缓存文件 rm -rf /home/jenkins/workspace/NG_PyTest_Py3/pytest_cache.tar.gz
-  4.2 
+  4.2 构建pytest 运行tag,如  (mark_level__bvt or mark_level__level1 or mark_level__level2 or mark_level__level3) and (mark_status__stable and mark_layer__system) and (mark_tl__tl2)
+(mark_level__bvt or mark_level__level1 or mark_level__level2 or mark_level__level3) and (mark_status__stable and mark_layer__system) and (mark_tl__tl2)
+  4.3 运行 
+   python3.10 -m pytest e-cloud/am/cases/ske/platform_feature/privilege -m (mark_level__bvt or mark_level__level1 or mark_level__level2 or mark_level__level3) and (mark_status__stable and mark_layer__system) and (mark_tl__tl2) -s -v 
+--reruns 0 --show-capture=stderr --durations=30 --alluredir /var/reportCacheHub/QA-TestCI/NG_PyTest_Py3/25506/rspec_reports --collect-only
+    此时可以判断是否有按照失败的缓存文件构建的用例，如果存在，按照缓存构建，否则按照正常构建
 
 
   
