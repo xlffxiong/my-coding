@@ -28,6 +28,7 @@ Rancher 是一个开源的容器管理平台，它可以用来部署和管理容
 
 https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-12-109753953-blog-132067384.235^v40^pc_relevant_3m_sort_dl_base2&spm=1001.2101.3001.4242.7&utm_relevant_index=15
 
+stage('Prepare Env')
 1、分配执行机
   执行机本质是rancher管理的虚拟机
 日志： running on xxx in {jenkins服务器代码目录}，注意代码目录固定
@@ -47,6 +48,7 @@ https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc
   3.4 若存在多个代码分支，如e-cloud 和epoch
     1）可以选择基于3.1安装依赖
     2）重新拉取新项目，再次安装依赖
+stage('Test Run')
 4、运行pytest
   4.1 删除缓存文件 rm -rf /home/jenkins/workspace/NG_PyTest_Py3/pytest_cache.tar.gz
   4.2 构建pytest 运行tag,如  (mark_level__bvt or mark_level__level1 or mark_level__level2 or mark_level__level3) and (mark_status__stable and mark_layer__system) and (mark_tl__tl2)
@@ -55,12 +57,22 @@ https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc
    python3.10 -m pytest e-cloud/am/cases/ske/platform_feature/privilege -m (mark_level__bvt or mark_level__level1 or mark_level__level2 or mark_level__level3) and (mark_status__stable and mark_layer__system) and (mark_tl__tl2) -s -v 
 --reruns 0 --show-capture=stderr --durations=30 --alluredir /var/reportCacheHub/QA-TestCI/NG_PyTest_Py3/25506/rspec_reports --collect-only
     此时可以判断是否有按照失败的缓存文件构建的用例，如果存在，按照缓存构建，否则按照正常构建
-  4.4 archiveArtifacts 保存产物
-    ```
-    archiveArtifacts 是一个在持续集成/持续部署（CI/CD）中常用的术语，特别是在 Jenkins 这类自动化服务器中。它指的是在构建过程结束后，将生成的构建产物（如编译后的二进制文件、日志文件、测试报告等）保存起来的操作。
-    
-    在 Jenkins 中，archiveArtifacts 是一个步骤（step），可以在 Jenkinsfile（Jenkins 的管道配置文件）中使用，用于指定哪些文件或目录应该被归档和保存。这样做的目的是为了保留构建的历史记录，以便将来可以回溯和分析
-    ```
+post {
+      always {
+    4.4 archiveArtifacts 保存产物 'pytest_cache.tar.gz'
+      ```
+      archiveArtifacts 是一个在持续集成/持续部署（CI/CD）中常用的术语，特别是在 Jenkins 这类自动化服务器中。它指的是在构建过程结束后，将生成的构建产物（如编译后的二进制文件、日志文件、测试报告等）保存起来的操作。
+      
+      在 Jenkins 中，archiveArtifacts 是一个步骤（step），可以在 Jenkinsfile（Jenkins 的管道配置文件）中使用，用于指定哪些文件或目录应该被归档和保存。这样做的目的是为了保留构建的历史记录，以便将来可以回溯和分析
+      ```
+  }
+    aborted {
+        sh'pkill -2 python'
+        sh 'release env'
+        sh 'recover source'
+    }
+  fail
+  https://github.com/jenkinsci/allure-plugin/issues/163
 
 
   
