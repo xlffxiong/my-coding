@@ -80,6 +80,7 @@ https://blog.csdn.net/weixin_47055136/article/details/132067384?spm=1001.2101.30
 
 
 
-  
+  UI创建容器
+docker run -d -P --name=xxx_chrome_debug --privileged=true --user=root -e VNC_NO_PASSWORD=1 -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 -e SE_OPTS='-sessionTimeout 7200' -v /sf/dir_ci/salmon/images/:/var/salmon_images -v /sf/dir_ci/salmon/mount:/tmp/salmon_mount -v /tmp/chrome_downloads:/home/seluser/Downloads --shm-size=256MB standalone-chrome-salmon
 
 
