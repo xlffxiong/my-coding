@@ -73,6 +73,11 @@ post {
     }
   fail
   https://github.com/jenkinsci/allure-plugin/issues/163
+部署流程参考这个
+https://blog.51cto.com/zhangxueliang/8767156
+https://blog.csdn.net/g950904/article/details/109753953?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-12-109753953-blog-132067384.235^v40^pc_relevant_3m_sort_dl_base2&spm=1001.2101.3001.4242.7&utm_relevant_index=15
+https://blog.csdn.net/weixin_47055136/article/details/132067384?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-132067384-blog-105292756.235%5Ev40%5Epc_relevant_3m_sort_dl_base2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-132067384-blog-105292756.235%5Ev40%5Epc_relevant_3m_sort_dl_base2&utm_relevant_index=4
+
 
 
   
