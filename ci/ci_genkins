@@ -110,4 +110,40 @@ jenkins部署在A上，部署形态为容器，B-N作为从节点加入jenkins�
 1）接口自动化直接在执行机执行
 2）UI自动化，此时会在第N+1个节点部署UI容器，然后在执行机x中远程连接UI容器执行UI操作，非UI操作直接在执行机执行
 
+================================================
+1. 安装 Jenkins
+访问 Jenkins 官网 下载 Jenkins。
+根据你的操作系统安装 Jenkins（Windows、Linux 或 macOS）。
+启动 Jenkins 并通过浏览器访问 Jenkins 的 Web 界面（通常是 http://localhost:8080）。
+完成初始设置，包括解锁 Jenkins、创建管理员用户等。
+2. 安装必要的 Jenkins 插件
+在 Jenkins 的管理界面中，选择“管理 Jenkins” -> “管理插件”。
+安装 GitHub、Git、Pipeline 以及任何与你的 UI 自动化框架相关的插件（例如 Selenium 插件）。
+3. 配置 Jenkins 与 GitHub 的集成
+在 GitHub 上生成一个访问令牌（Personal Access Token）。
+在 Jenkins 中配置 GitHub 服务器，添加你的 GitHub 凭据。
+设置 Webhook，以便在 GitHub 上有新的提交时，能够触发 Jenkins 构建。
+4. 创建 Jenkins Job
+在 Jenkins 中创建一个新的任务（Job）或流水线（Pipeline）。
+配置源码管理，指定你的 GitHub 仓库 URL 和分支。
+配置构建触发器，例如通过 GitHub Webhook 触发或定时触发。
+5. 编写 Jenkinsfile（如果使用 Pipeline）
+在你的项目根目录中创建一个 Jenkinsfile。
+定义 Pipeline 的各个阶段，包括拉取代码、运行测试、打包、部署等。
+6. 配置 UI 自动化测试环境
+确保你的 Jenkins 服务器上安装了所有必要的浏览器和驱动程序（如 ChromeDriver、GeckoDriver 等）。
+如果使用容器化技术（如 Docker），确保 Jenkins 有权限运行 Docker 命令，并且配置好相关的 Docker 镜像。
+7. 编写 UI 自动化测试脚本
+根据你选择的 UI 自动化框架（如 Selenium、Appium、Cypress 等），编写自动化测试脚本。
+确保测试脚本可以在本地执行并通过。
+8. 集成 UI 自动化测试到 Jenkins Pipeline
+在 Jenkinsfile 中添加运行 UI 自动化测试的步骤。
+配置测试结果的报告和存档。
+9. 测试和调试
+执行 Jenkins Job，确保所有步骤都能正确运行。
+调试任何失败的步骤，查看日志以确定问题所在。
+10. 维护和优化
+定期检查你的 CI 环境，确保一切运行顺畅。
+根据需要更新和优化你的 Jenkinsfile 和测试脚本。
+=========================================================
 
