@@ -99,3 +99,5 @@ docker run：Docker 的命令，用于运行一个新的容器。
 --shm-size=256MB：设置容器的共享内存大小为 256MB。
 standalone-chrome-salmon：要运行的 Docker 镜像的名称。
 这条命令的主要目的是运行一个名为 standalone-chrome-salmon 的 Docker 镜像，并进行一些特定的设置，如设置环境变量、挂载目录、设置共享
+=====================
+jenkins的执行机是通过 rancher管理的  https://blog.csdn.net/qq_39093474/article/details/132154723
